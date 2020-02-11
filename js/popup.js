@@ -20,7 +20,7 @@ var executionAPIExample = (function() {
 
 	var state = STATE_START;
 
-	var signin_button, xhr_button, revoke_button, exec_info_div, exec_data, exec_result;
+	var signin_button, xhr_button, xhr_button2, revoke_button, exec_info_div, exec_data, exec_result;
 
 	function disableButton(button) {
 		button.setAttribute('disabled', 'disabled');
@@ -36,17 +36,20 @@ var executionAPIExample = (function() {
 		  case STATE_START:
 			enableButton(signin_button);
 			disableButton(xhr_button);
+			disableButton(xhr_button2);
 			disableButton(revoke_button);
 			break;
 		  case STATE_ACQUIRING_AUTHTOKEN:
 			sampleSupport.log('Acquiring token...');
 			disableButton(signin_button);
 			disableButton(xhr_button);
+			disableButton(xhr_button2);
 			disableButton(revoke_button);
 			break;
 		  case STATE_AUTHTOKEN_ACQUIRED:
 			disableButton(signin_button);
 			enableButton(xhr_button);
+			enableButton(xhr_button2);
 			enableButton(revoke_button);
 			break;
 		}
@@ -110,6 +113,16 @@ var executionAPIExample = (function() {
 		});
 	}
 	
+
+		function sendDataToExecutionAPI2() {
+		disableButton(xhr_button2);
+		xhr_button.className = 'loading';
+		getAuthToken({
+			'interactive': false,
+			'callback': sendDataToExecutionAPICallback2,
+		});
+	}
+
 	/**
 	 * Calling the Execution API script callback.
 	 * @param {string} token - Google access_token to authenticate request with.
@@ -124,6 +137,16 @@ var executionAPIExample = (function() {
 			});
 	}
 
+	function sendDataToExecutionAPICallback2(token) {
+		sampleSupport.log('Sending data to Execution API script');
+		post({	'url': 'https://script.googleapis.com/v1/scripts/' + SCRIPT_ID + ':run',
+				'callback': executionAPIResponse,
+				'token': token,
+				'request': {'function': 'checkAll',
+							'parameters': {}}
+			});
+	}
+
 	/**
 	 * Handling response from the Execution API script.
 	 * @param {Object} response - response object from API call
@@ -131,6 +154,7 @@ var executionAPIExample = (function() {
 	function executionAPIResponse(response){
 		sampleSupport.log(response);
 		enableButton(xhr_button);
+		enableButton(xhr_button2);
 		xhr_button.classList.remove('loading');
 	}
 	
@@ -200,6 +224,9 @@ var executionAPIExample = (function() {
 
 			xhr_button = document.querySelector('#getxhr');
 			xhr_button.addEventListener('click', sendDataToExecutionAPI.bind(xhr_button, true));
+
+			xhr_button2 = document.querySelector('#getxhr2');
+			xhr_button2.addEventListener('click', sendDataToExecutionAPI.bind(xhr_button2, true));
 
 			revoke_button = document.querySelector('#revoke');
 			revoke_button.addEventListener('click', revokeToken);
