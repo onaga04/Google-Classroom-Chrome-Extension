@@ -1,0 +1,28 @@
+{  
+   "name":"Steve's API Example",
+   "description":"Example setup for Execution API in a Chrome Extension",
+   "version":"0.1",
+   "icons":{  
+      "128":"images/icon.png"
+   },
+   "manifest_version":2,
+   "minimum_chrome_version":"29",
+   "browser_action":{  
+      "default_icon":"images/icon.png",
+      "default_title":"Steve's API Example",
+      "default_popup":"popup.html"
+   },
+   "background": { "scripts": ["background.js"], "persistent":false },
+   "permissions":[  
+      "tabs",
+      "<all_urls>",
+      "identity",
+      "https://*.googleapis.com/*"
+   ],
+   "oauth2":{  
+      // client_id below is specifc to the application key. Follow the 
+    // documentation to obtain one for your app. 
+    "client_id":"194466404784-6i302nov7rf327rs5gfanfu2qp2atr0u.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/script.scriptapp", "https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/classroom.courses", "https://www.googleapis.com/auth/classroom.coursework.me.readonly", "https://www.googleapis.com/auth/classroom.profile.emails", "https://www.googleapis.com/auth/classroom.profile.photos", "https://www.googleapis.com/auth/classroom.rosters", "https://www.googleapis.com/auth/classroom.coursework.me", "https://www.googleapis.com/auth/classroom.coursework.me.readonly", "https://www.googleapis.com/auth/classroom.coursework.students", "https://www.googleapis.com/auth/classroom.coursework.students.readonly"]
+   }
+}
