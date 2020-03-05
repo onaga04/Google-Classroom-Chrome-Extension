@@ -1,8 +1,6 @@
 /*
 * Based on: 
-* Identity example in Chrome Apps Samples 
-* https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/identity 
-* https://github.com/GoogleChrome/chrome-app-samples/blob/master/LICENSE
+* https://github.com/mhawksey/Example-Google-Apps-Script-Execution-API-integration-in-Chrome-Extension/
 */
 
 html, body {
@@ -11,7 +9,7 @@ html, body {
   color: #666;
   background: #fafafa;
   width: 454px;
-  height: 560px;
+  height: 400px;
 }
 
 .header {
@@ -166,7 +164,7 @@ html, body {
 
 .log textarea {
   width: 100%;
-  min-height: 120px;
+  min-height: 60px;
   font-family: "Courier New", Courier, monospace;
   margin: 2px;
   background: #FFFFFF;
