@@ -1,11 +1,11 @@
-/**
+ /**
  * Lists 10 course names and ids.
  * (student)CAOA Official Class (44425413301)
  * (instructor)Demo Class (43115435171)
- * (Owner) Dev Class (50096698646)
+ * (Owner) Dev Class (51807892865)
  * Evan ID: 114384411164040557741
+ 51807892865
  */
-
 function listCourses() {
   var optionalArgs = {
     pageSize: 10
@@ -23,10 +23,10 @@ function listCourses() {
 }
 
 function testSystem(){
-  var assignments = Classroom.Courses.CourseWork.list(50096698646);
+  var assignments = Classroom.Courses.CourseWork.list(51807892865);
   if(assignments.courseWork != null){
     var courseId = assignments.courseWork[assignments.courseWork.length - 1]['id'];
-    var submissions = Classroom.Courses.CourseWork.StudentSubmissions.list(50096698646, courseId);
+    var submissions = Classroom.Courses.CourseWork.StudentSubmissions.list(51807892865, courseId);
     // We might be able to optimize this using the IndexOf function for js arrays
     for(var i = 0; i < submissions.studentSubmissions.length - 1; i++){
       if(submissions.studentSubmissions[i]['assignedGrade'] > -1){
@@ -34,8 +34,8 @@ function testSystem(){
       }else{
         submissions.studentSubmissions[i]['draftGrade'] = 70;
         Logger.log(submissions.studentSubmissions[i]);
-        Classroom.Courses.CourseWork.StudentSubmissions.patch(submissions.studentSubmissions[i], 50096698646, submissions.studentSubmissions[i]['courseWorkId'], submissions.studentSubmissions[i]['id'], {updateMask:'draftGrade'});
-        Classroom.Courses.CourseWork.StudentSubmissions["return"]({}, 50096698646, submissions.studentSubmissions[i]['courseWorkId'], submissions.studentSubmissions[i]['id']);
+        Classroom.Courses.CourseWork.StudentSubmissions.patch(submissions.studentSubmissions[i], 51807892865, submissions.studentSubmissions[i]['courseWorkId'], submissions.studentSubmissions[i]['id'], {updateMask:'draftGrade'});
+        Classroom.Courses.CourseWork.StudentSubmissions["return"]({}, 51807892865, submissions.studentSubmissions[i]['courseWorkId'], submissions.studentSubmissions[i]['id']);
         break;
       }
     }
@@ -51,7 +51,7 @@ studentSubmissions checks all of the submissions associated with courseId. If th
 If the submissionn grade is not passing or not present, the student id associated with that submission is added to the sidsf(student id fail) array. Both of these arrays are returned.
 */
 function studentSubmissions(courseId) {
-  var submissions = Classroom.Courses.CourseWork.StudentSubmissions.list(50096698646, courseId);
+  var submissions = Classroom.Courses.CourseWork.StudentSubmissions.list(51807892865, courseId);
   var sidsp = [];
   var sidsf = [];
   for(var i = 0; i<submissions.studentSubmissions.length; i++){
@@ -78,7 +78,7 @@ function assignNext(courseWork, sids) {
   Logger.log(courseWork);
   if(courseWork['state'] = 'DRAFT'){
     courseWork['state'] = 'PUBLISHED';
-    var coursework = Classroom.Courses.CourseWork.patch(courseWork,50096698646, courseWork['id'], {updateMask:'state'});
+    var coursework = Classroom.Courses.CourseWork.patch(courseWork,51807892865, courseWork['id'], {updateMask:'state'});
     Logger.log(courseWork);
   }
   if(sids[0].length > 0 && sids[1].length > 0){
@@ -89,12 +89,12 @@ function assignNext(courseWork, sids) {
         "removeStudentIds": [sids[1]]
       }
     } 
-    var ret = Classroom.Courses.CourseWork.modifyAssignees(body, 50096698646, courseWork['id'])
+    var ret = Classroom.Courses.CourseWork.modifyAssignees(body, 51807892865, courseWork['id'])
   }else if(sids[0].length > 0 && sids[1].length == 0){
     var body = {
       "assigneeMode": 'ALL_STUDENTS'
     }
-    var ret = Classroom.Courses.CourseWork.modifyAssignees(body, 50096698646, courseWork['id'])
+    var ret = Classroom.Courses.CourseWork.modifyAssignees(body, 51807892865, courseWork['id'])
   }else{
     Logger.log("Error: No students found in addstudents array");
   }
@@ -111,9 +111,9 @@ function checkAll(){
     pageSize: 10,
     courseWorkStates: 'DRAFT'
   };
-  var allstudents = Classroom.Courses.Students.list(50096698646);
-  var assignments = Classroom.Courses.CourseWork.list(50096698646);
-  var dassignments = Classroom.Courses.CourseWork.list(50096698646,optionalArgs);
+  var allstudents = Classroom.Courses.Students.list(51807892865);
+  var assignments = Classroom.Courses.CourseWork.list(51807892865);
+  var dassignments = Classroom.Courses.CourseWork.list(51807892865,optionalArgs);
   for(var i = assignments.courseWork.length - 1; i > 0 ; i--){
     var sids = studentSubmissions(assignments.courseWork[i]['id']);
     var check = sids[0].concat(sids[1]);
@@ -184,61 +184,61 @@ function createAssignments() {
      { "link": {"url": ''}}
  var matLes18 = 
      { "link": {"url": ''}}
-  var course_work = Classroom.Courses.CourseWork.create({"title": "Coins","state": "PUBLISHED","description": "Place that holds coin values", "workType": "ASSIGNMENT","maxPoints": 1800}, 50096698646);
+  var course_work = Classroom.Courses.CourseWork.create({"title": "Coins","state": "PUBLISHED","description": "Place that holds coin values", "workType": "ASSIGNMENT","maxPoints": 1800}, 51807892865);
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 1","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes1, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 1","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes1, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false; 
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 2","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes2, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 2","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes2, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   /*
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 3","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes3, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 3","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes3, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 4","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes4, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 4","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes4, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false; 
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 5","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes5, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 5","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes5, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 6","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes6, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 6","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes6, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 7","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes7, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 7","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes7, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false; 
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 8","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes8, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 8","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes8, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 9","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes9, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 9","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes9, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 10","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes10, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 10","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes10, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false; 
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 11","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes11, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 11","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes11, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 12","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes12, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 12","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes12, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false; 
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 13","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes13, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 13","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes13, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false; 
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 14","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes14, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 14","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes14, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 15","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes15, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 15","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes15, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 16","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes16, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 16","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes16, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false; 
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 17","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes17, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 17","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!","materials": matLes17, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   if(course_work){
-  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 18","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes18, "workType": "ASSIGNMENT","maxPoints": 100}, 50096698646);
+  course_work = Classroom.Courses.CourseWork.create({"title": "Lesson 18","state": "DRAFT","description": "Please answer all of the questions in a google doc and submit it as an attachment when you are finished!", "materials": matLes18, "workType": "ASSIGNMENT","maxPoints": 100}, 51807892865);
   }else return false;
   */
   if(course_work) return true;
