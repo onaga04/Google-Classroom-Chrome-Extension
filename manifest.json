@@ -1,7 +1,7 @@
 {  
    "name":"CAOA GOOGLE CLASSROOM EXTENSION",
    "description":"Create assignments and advance students automatically to next course",
-   "version":"0.1",
+   "version":"0.2",
    "icons":{  
       "128":"images/icon.png"
    },
@@ -14,13 +14,13 @@
    },
    "background": { "scripts": ["background.js"], "persistent":false },
    "permissions":[  
-      "tabs",
+      "activeTab",
       "<all_urls>",
       "identity",
       "https://*.googleapis.com/*"
    ],
    "oauth2":{  
     "client_id":"44271150968-n4fs5sg8kfd22kvqq8mj0up9fmsq3f3e.apps.googleusercontent.com",
-    "scopes": ["https://www.googleapis.com/auth/script.scriptapp", "https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/classroom.courses", "https://www.googleapis.com/auth/classroom.coursework.me.readonly", "https://www.googleapis.com/auth/classroom.profile.emails", "https://www.googleapis.com/auth/classroom.profile.photos", "https://www.googleapis.com/auth/classroom.rosters", "https://www.googleapis.com/auth/classroom.coursework.me", "https://www.googleapis.com/auth/classroom.coursework.me.readonly", "https://www.googleapis.com/auth/classroom.coursework.students", "https://www.googleapis.com/auth/classroom.coursework.students.readonly"]
+    "scopes": ["https://www.googleapis.com/auth/script.scriptapp", "https://www.googleapis.com/auth/spreadsheets","https://www.googleapis.com/auth/classroom.courses", "https://www.googleapis.com/auth/classroom.coursework.me.readonly", "https://www.googleapis.com/auth/classroom.profile.emails", "https://www.googleapis.com/auth/classroom.profile.photos", "https://www.googleapis.com/auth/classroom.rosters", "https://www.googleapis.com/auth/classroom.coursework.me", "https://www.googleapis.com/auth/classroom.coursework.me.readonly", "https://www.googleapis.com/auth/classroom.coursework.students", "https://www.googleapis.com/auth/classroom.coursework.students.readonly", "https://www.googleapis.com/auth/script.external_request"]
    }
 }
