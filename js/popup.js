@@ -226,7 +226,7 @@ var executionAPIExample = (function() {
 			xhr_button.addEventListener('click', sendDataToExecutionAPI.bind(xhr_button, true));
 
 			xhr_button2 = document.querySelector('#getxhr2');
-			xhr_button2.addEventListener('click', sendDataToExecutionAPI.bind(xhr_button2, true));
+			xhr_button2.addEventListener('click', sendDataToExecutionAPI2.bind(xhr_button2, true));
 
 			revoke_button = document.querySelector('#revoke');
 			revoke_button.addEventListener('click', revokeToken);
